@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% include head.html %}
+</head>
+<body>
+<h1>{{ site.title }}</h1>
+<h2>{{ page.title }}</h2>
+<p>{{ page.date | date: "%Y-%m-%d" }}</p>
+<audio controls="controls">
+<source src="{{ page.mp3 }}" type="audio/mpeg" />
+<embed src="{{ page.mp3 }}" />
+Your browser does not support the audio tag.
+</audio>
+{{ content }}
+</body>
+</html>

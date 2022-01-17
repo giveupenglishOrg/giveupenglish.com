@@ -1,0 +1,13 @@
+title: 英语入门到放弃
+author: Jason
+email: hi@jsntn.com
+description: > # this means to ignore newlines until "baseurl:"
+  一种语言，就是一种人生体验。
+
+# Build settings
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+permalink: /:title.html
