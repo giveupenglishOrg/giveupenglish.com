@@ -3,3 +3,4 @@ _site
 *.yml~
 *.md~
 Gemfile~
+Gemfile.lock
