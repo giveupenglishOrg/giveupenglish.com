@@ -1,0 +1,67 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <atom:link href="{{ site.url }}{{ site.podcast.url }}" rel="self" type="application/rss+xml" />
+    <title>{{ site.podcast.title }}</title>
+    <link>{{ site.url }}</link>
+    <description><![CDATA[{{ site.podcast.summary }}]]></description>
+    <copyright>{{ site.license }} {{ site.time | date:"%Y" }} {{ site.podcast.title }}</copyright>
+    <language>en</language>
+    <managingEditor>{{ site.email }} ({{ site.author }})</managingEditor>
+    <webMaster>{{ site.email }} ({{ site.author }})</webMaster>
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <image>
+      <link>{{ site.url }}</link>
+      <url>{{ site.url }}{{ site.podcast.albumCover }}</url>
+      <title>{{ site.podcast.title }}</title>
+    </image>
+    <generator>{{ site.title }}</generator>
+    <itunes:author>{{ site.author }}</itunes:author>
+    <itunes:category text="Society &amp; Culture">
+      <itunes:category text="Personal Journals" />
+    </itunes:category>
+    <itunes:explicit>No</itunes:explicit>
+    <itunes:subtitle>{{ site.podcast.subtitle }}</itunes:subtitle>
+    <itunes:summary><![CDATA[{{ site.podcast.summary }}]]></itunes:summary>
+    <itunes:keywords></itunes:keywords>
+    <itunes:owner>
+      <itunes:name>{{ site.author }}</itunes:name>
+      <itunes:email>{{ site.email }}</itunes:email>
+    </itunes:owner>
+    <itunes:image href="{{ site.url }}{{ site.podcast.albumCover }}" />
+    {% assign counter = 0 %}
+    {% for post in site.posts %}
+    {% if post.tags contains "podcast" %}
+    {% assign counter = counter | plus: 1 %}
+    {% if counter == 100 %}
+    {% break %}
+    {% endif %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <guid isPermaLink="true">{{ post.mp3 }}</guid>
+      <enclosure length="{{ post.length }}" url="{{ post.mp3 }}" type="audio/mpeg"/>
+      <description><![CDATA[{{ post.description }}<br /><br />原文链接：<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>]]></description>
+      <content:encoded><![CDATA[{{ post.description }}<br /><br />原文链接：<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>]]></content:encoded>
+      <itunes:explicit>No</itunes:explicit>
+      <itunes:author>{{ site.author }}</itunes:author>
+      <itunes:duration>{{ post.duration }}</itunes:duration>
+      <itunes:subtitle><![CDATA[{{ post.subtitle }}]]></itunes:subtitle>
+      <itunes:image href="{% if post.image %}{{ site.url }}{{ post.image }}{% else %}{{ site.url }}{{ site.podcast.albumCover }}{% endif %}" />
+      <itunes:keywords>{{ post.tags | array_to_sentence_string }}</itunes:keywords>
+      <itunes:summary><![CDATA[{{ post.description }}<br /><br />原文链接：<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>]]></itunes:summary>
+    </item>
+    {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

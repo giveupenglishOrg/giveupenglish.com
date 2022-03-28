@@ -1,4 +1,5 @@
 title: 英语入门到放弃
+url: https://giveupenglish.com
 author: Jason
 email: hi@jsntn.com
 description: > # this means to ignore newlines until "baseurl:"
@@ -12,3 +13,14 @@ exclude:
   - vendor
 
 permalink: /:title.html
+
+# PODCAST
+license: CC-BY-SA
+podcast:
+  title: 英语入门到放弃
+  subtitle: 一种语言，就是一种人生体验。
+  url: /podcast.xml
+  albumCover: /images/podcast.jpg
+  summary: >
+    一种语言，就是一种人生体验。<br />
+    <a href="https://giveupenglish.com">giveupenglish.com</a>
