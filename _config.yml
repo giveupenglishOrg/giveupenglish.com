@@ -2,7 +2,7 @@ title: 英语入门到放弃
 url: https://giveupenglish.com
 author: Jason
 email: hi@jsntn.com
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   一种语言，就是一种人生体验。
 
 # Build settings
@@ -11,8 +11,15 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - README.md
 
 permalink: /:title.html
+
+# Pagination
+plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/page/:num"
 
 # PODCAST
 license: CC-BY-SA
